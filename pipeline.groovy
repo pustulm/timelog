@@ -1,35 +1,46 @@
 pipeline {
     agent any
 
+    environment {
+        DOCKER_HUB_CREDENTIALS = credentials('docker-hub-credentials')
+        KUBECONFIG_CREDENTIALS = credentials('kubeconfig-credentials')
+    }
+
     stages {
         stage('Checkout') {
             steps {
                 checkout scm
             }
         }
+
         stage('Build Docker Image') {
             steps {
                 script {
-                    docker.build("your-docker-username/go-web-app:${BUILD_NUMBER}")
-                }
-            }
-        }
-        stage('Push Docker Image') {
-            steps {
-                script {
-                    docker.withRegistry('https://index.docker.io/v1/', 'docker-hub-credentials') {
-                        dockerImage.push()
+                    docker.withRegistry('', DOCKER_HUB_CREDENTIALS) {
+                        def customImage = docker.build("your-docker-username/time-log-app:${BUILD_NUMBER}")
+                        customImage.push()
                     }
                 }
             }
         }
+
         stage('Deploy to Kubernetes') {
             steps {
-                kubernetesDeploy(
-                    kubeconfigId: 'your-kubeconfig-credentials',
-                    configs: 'path/to/kubernetes/deployment.yaml'
-                )
+                script {
+                    kubeConfigFile = writeKubeConfigToFile()
+                    kubernetesDeploy(
+                        kubeconfigId: KUBECONFIG_CREDENTIALS,
+                        configs: kubeConfigFile
+                    )
+                }
             }
         }
     }
+}
+
+def writeKubeConfigToFile() {
+    def kubeConfigContent = credentials('kubeconfig-credentials')
+    def kubeConfigFile = 'kubeconfig.yml'
+    writeFile file: kubeConfigFile, text: kubeConfigContent
+    return kubeConfigFile
 }
