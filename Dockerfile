@@ -1,4 +1,4 @@
-FROM golang:1.20
+FROM golang:1.21.0-alpine3.17
 
 WORKDIR /app
 
@@ -9,4 +9,3 @@ RUN go build -o main
 EXPOSE 8000
 
 CMD ["./main"]
-

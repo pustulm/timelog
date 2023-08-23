@@ -1,0 +1,20 @@
+# timelog-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: time-log-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: time-log-app
+  template:
+    metadata:
+      labels:
+        app: time-log-app
+    spec:
+      containers:
+        - name: time-log-app
+          image: michalp96/time-log-app
+          ports:
+            - containerPort: 8000
