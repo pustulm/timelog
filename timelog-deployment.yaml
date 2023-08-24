@@ -14,7 +14,15 @@ spec:
         app: time-log-app
     spec:
       containers:
-        - name: time-log-app
-          image: michalp96/time-log-app
+        - name: timelog-app
+          image: michalp96/timelog-app:latest
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
           ports:
             - containerPort: 8000
+          

@@ -38,14 +38,14 @@ I'm using golang in alpine version because of small size of created image.
 In order to create image use following command 
 
 ```
-docker build -t time-log-app .
+docker build -t timelog-app .
 
 ```
 
 To test if image is working create a container based on it:
 
 ```
-docker run -d -p 8000:8000 time-log-app
+docker run -d -p 8000:8000 timelog-app
 ```
 
 You should be able to acces the API on 'http://localhost:8080'. If everything is all right you should see a time on your screen.
@@ -55,7 +55,7 @@ You should be able to acces the API on 'http://localhost:8080'. If everything is
 To push image to DockerHub you have to Sign Up to https://hub.docker.com/.
 
 ```
-docker push YOUR-USER-NAME/time-log-app
+docker push YOUR-USER-NAME/timelog-app
 ```
 
 5. SET UP KUBERNETES CLUSTER
@@ -66,20 +66,29 @@ Next step is creating a Kubernetes Deployment YAML file.
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: timelog-api
+  name: timelog-app
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: timelog-api
+      app: timelog-app
   template:
     metadata:
       labels:
-        app: timelog-api
+        app: timelog-app
     spec:
       containers:
         - name: timelog-api
-          image: YOUR_DOCKER_IMAGE_NAME:TAG
+          image: your_dockerhub_name/timelog-app:TAG
           ports:
             - containerPort: 8000
 ````
+
+You have to change image name to name of image that you uploaded to DockerHUB. When you set your YAML file use command 
+
+```
+kubectl apply -f timelog-deployment.yaml
+```
+
+6. SET MINIKUBE
+
