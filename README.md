@@ -90,5 +90,8 @@ You have to change image name to name of image that you uploaded to DockerHUB. W
 kubectl apply -f timelog-deployment.yaml
 ```
 
-6. SET MINIKUBE
+6. SET MINIKUBE (OPTIONALLY IF YOU WANT RUN APP LOCALY)
+ ssh -i ~/.minikube/machines/minikube/id_rsa docker@$(minikube ip)
+ 
+ or minikube ssh
 
