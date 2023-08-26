@@ -10,7 +10,9 @@ pipeline {
     stages {
         stage('Checkout source') {
             steps {
-                git 'https://github.com/pustulm/timelog.git'
+                git branch 'main'
+                credentialsId '42155af-eb8e-443e-91ad-f2e7192c045d'
+                url 'https://github.com/pustulm/timelog.git'
             }
         }
         
