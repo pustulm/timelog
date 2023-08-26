@@ -17,7 +17,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    dockerImage = docker.build("timelog-api")
+                    dockerImage = docker.build dockerImageName
                 }
             }
         }
