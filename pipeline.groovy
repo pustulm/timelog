@@ -1,25 +1,42 @@
 pipeline {
+    
+    environment {
+        dockerImageName = ''michalp96/timelog-app'
+        dockerImage = ''
+    }
+    
     agent any
 
     stages {
-        stage('Checkout') {
+        stage('Checkout source') {
             steps {
-                checkout scm
+                git 'https://github.com/pustulm/timelog'
             }
         }
         
         stage('Build Docker Image') {
             steps {
                 script {
-                    docker.build("timelog-api:${env.BUILD_NUMBER}")
+                    dockerImage = docker.build("timelog-api:${env.BUILD_NUMBER}")
                 }
             }
         }
-
+        
+        stage('Pushing Image') {
+            environment {
+                registryCredential = '13b509bb-a471-4344-a588-22e94b5e246a'
+            }
+            steps {
+                script {
+                    docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
+                        dockerImage.push('latest')
+                    }
+                }
+            }
+        }
         stage('Deploy to Kubernetes') {
             steps {
                 kubernetesDeploy(
-                    kubeconfigId: 'YOUR_KUBECONFIG_ID',
                     configs: 'timelog-deployment.yaml',
                     enableConfigSubstitution: true
                 )
