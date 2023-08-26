@@ -1,7 +1,7 @@
 pipeline {
     
     environment {
-        dockerImageName = ''michalp96/timelog-app'
+        dockerImageName = 'michalp96/timelog-app'
         dockerImage = ''
     }
     
