@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('Checkout source') {
             steps {
-                url 'https://github.com/pustulm/timelog.git'
+                git 'https://github.com/pustulm/timelog.git'
             }
         }
         
