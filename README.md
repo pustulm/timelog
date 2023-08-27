@@ -93,6 +93,6 @@ kubectl apply -f timelog-deployment.yaml
 6. SET MINIKUBE (OPTIONALLY IF YOU WANT RUN APP LOCALY)
  ssh -i ~/.minikube/machines/minikube/id_rsa docker@$(minikube ip)
  
- or minikube ssh
+ or minikube sshg
 
-aa
+aaa
