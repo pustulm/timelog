@@ -95,4 +95,4 @@ kubectl apply -f timelog-deployment.yaml
  
  or minikube ssh
 
-a
+aa
