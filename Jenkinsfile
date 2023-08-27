@@ -25,7 +25,7 @@ pipeline {
         stage('Pushing Image') {
             steps {
                 script {
-                    withDockerRegistry([ credentialsID: "dockerhub", url:"" ]) {
+                    docker.withRegistry( 'https://hub.docker.com/repository/docker/michalp96/timelog-app/general', 'dockerhub' ) {
                         dockerImage.push('latest')
                     }
                 }
