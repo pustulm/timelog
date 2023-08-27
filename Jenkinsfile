@@ -36,7 +36,6 @@ pipeline {
                 kubernetesDeploy(
                     kubeconfigId: 'kubernetes',
                     configs: 'timelog-deployment.yaml',
-                    enableConfigSubstitution: true
                 )
             }
         }
