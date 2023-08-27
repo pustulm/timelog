@@ -25,7 +25,7 @@ pipeline {
         stage('Pushing Image') {
             steps {
                 script {
-                    docker.withRegistry( 'https://registry-1.docker.io/v2/', '13b509bb-a471-4344-a588-22e94b5e246a' ) {
+                    docker.withRegistry( 'https://registry.docker.io/v2/', '13b509bb-a471-4344-a588-22e94b5e246a' ) {
                         dockerImage.push('latest')
                     }
                 }
