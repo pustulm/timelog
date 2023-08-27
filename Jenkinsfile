@@ -17,7 +17,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    dockerImage = docker.build("michalp96/timelog-api:${env.BUILD_NUMBER}")
+                    dockerImage = docker.build("michalp96/timelog-app:${env.BUILD_NUMBER}")
                 }
             }
         }
