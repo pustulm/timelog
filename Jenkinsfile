@@ -23,12 +23,9 @@ pipeline {
         }
         
         stage('Pushing Image') {
-            environment {
-                registryCredential = '13b509bb-a471-4344-a588-22e94b5e246a'
-            }
             steps {
                 script {
-                    docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
+                    docker.withRegistry( 'https://registry.hub.docker.com', '13b509bb-a471-4344-a588-22e94b5e246a' ) {
                         dockerImage.push('latest')
                     }
                 }
