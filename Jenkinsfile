@@ -14,10 +14,17 @@ pipeline {
             }
         }
         
+        stage('Initialize'){
+            steps {
+            def dockerHome = tool 'myDocker'
+            env.PATH = "${dockerHome}/bin:${env.PATH}"
+            }
+        }
+    
         stage('Build Docker Image') {
             steps {
                 script {
-                    dockerImage = docker.build("timelog")
+                    dockerImage = docker.build("timelog-api:${env.BUILD_NUMBER}")
                 }
             }
         }
