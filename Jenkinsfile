@@ -25,7 +25,7 @@ pipeline {
         stage('Pushing Image') {
             steps {
                 script {
-                    withDockerRegistry([credentialsID: '13b509bb-a471-4344-a588-22e94b5e246a', url='']) {
+                    withDockerRegistry([credentialsID: '13b509bb-a471-4344-a588-22e94b5e246a', url:'']) {
                         dockerImage.push('latest')
                     }
                 }
