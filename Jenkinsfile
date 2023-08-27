@@ -17,7 +17,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    dockerImage = docker.build("michalp96/timelog-app:${env.BUILD_NUMBER}")
+                    dockerImage = docker.build('michalp96/timelog-app:${env.BUILD_NUMBER}')
                 }
             }
         }
@@ -34,6 +34,7 @@ pipeline {
         stage('Deploy to Kubernetes') {
             steps {
                 kubernetesDeploy(
+                    kubeconfigId: ''
                     configs: 'timelog-deployment.yaml',
                     enableConfigSubstitution: true
                 )
