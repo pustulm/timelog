@@ -13,14 +13,7 @@ pipeline {
                 git 'https://github.com/pustulm/timelog.git'
             }
         }
-        
-        stage('Initialize'){
-            steps {
-            def dockerHome = tool 'myDocker'
-            env.PATH = "${dockerHome}/bin:${env.PATH}"
-            }
-        }
-    
+
         stage('Build Docker Image') {
             steps {
                 script {
