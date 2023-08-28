@@ -33,9 +33,9 @@ pipeline {
         }
         stage('Deploy to Kubernetes') {
             steps {
-                kubernetesDeploy(
-                    kubeconfigId: 'kubernetes',
-                    configs: 'timelog-deployment.yaml',
+                sh """
+                    kubectl apply -f timelog-deployment.yaml
+                    """
                 )
             }
         }
