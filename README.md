@@ -96,3 +96,5 @@ kubectl apply -f timelog-deployment.yaml
  or minikube sshg
 
 aaa
+
+docker run -u root --privileged --name jenkins -d -p 8080:8080 -p 50000:50000 -v /var/run/docker.sock:/var/run/docker.sock -v $(which docker):/usr/bin/docker -v jenkins_data:/var/jenkins_home --network minikube jenkins/jenkins:lts
