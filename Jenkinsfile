@@ -34,9 +34,9 @@ pipeline {
         stage('Deploy to Kubernetes') {
             steps {
                 container('kubectl') {
-                  withCredentials([file(credentialsId: 'mykubeconfig', variable: 'KUBECONFIG')]) {
-                        sh 'sed -i "s/<TAG>/${BUILD_NUMBER}/" myweb.yaml'
-                        sh 'kubectl apply -f myweb.yaml'
+                  withCredentials([file(credentialsId: 'kubernetes', variable: 'KUBECONFIG')]) {
+                        sh 'sed -i "s/<TAG>/${BUILD_NUMBER}/" timelog-deployment.yaml'
+                        sh 'kubectl apply -f timelog-deployment.yaml'
                   }
             }
         }
