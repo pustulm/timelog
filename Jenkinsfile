@@ -31,14 +31,14 @@ pipeline {
             }
         }
         stage('Deploy to Kubernetes') {
-            steps {
-                withKubeConfig(credentialsId: 'kubernetes', serverUrl: '') {
-                        sh 'curl -LO "https://storage.googleapis.com/kubernetes-release/release/v1.20.5/bin/linux/amd64/kubectl"'  
-                        sh 'chmod u+x ./kubectl'  
-                        sh './kubectl apply -f timelog-deployment.yaml'
-                        sh './kubectl get pods'
-                }        
+            node {
+                  stage('Apply Kubernetes files') {
+                withKubeConfig([credentialsId: 'user1', serverUrl: 'https://api.k8s.my-company.com']) {
+                  sh 'kubectl apply -f my-kubernetes-directory'
+                }   
             }  
         }
     }
 }
+}
+
