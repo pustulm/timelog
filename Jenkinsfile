@@ -33,7 +33,7 @@ pipeline {
         stage('Deploy to Kubernetes') {
             node {
                   stage('Apply Kubernetes files') {
-                withKubeConfig([credentialsId: 'user1', serverUrl: '']) {
+                withKubeConfig([credentialsId: 'kubernetes', serverUrl: '']) {
                   sh 'kubectl apply -f timelog-deployment.yaml'
                 }   
             }  
