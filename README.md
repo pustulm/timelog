@@ -1,6 +1,6 @@
 # DEPLOYMENT OF TIME LOG GO APP
 
-*---OVERVIEW OF PROJECT---*
+**---OVERVIEW OF PROJECT---**
 
 The goal of this repository is to make a CI/CD job for a simple Time Log App which involves usage of basic DevOps tools like Jenkins or Kubernetes.
 
