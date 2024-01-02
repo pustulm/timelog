@@ -190,7 +190,8 @@ Now you're ready to create the job. From the dashboard of jenkisn click New Item
 
 You can check if everything went fine in kubectl. Try to get pods, deployments and service. You should be able to connect to created pods from minikube ssh.
 
-***SUMMARIES OF THE PROJECT***
+***-SUMMARIES OF THE PROJECT-***
+
 It was my frist DevOps project. It far from perfect, but I'm pretty happy about the result of my work. The biggest problem was configuring the pipeline in Jenkins. There was a lot of problems, most of them caused by lack of experience in working in containers. Also the part of pipeline which involved the kubernetes was really problematic. Until find the usage of the Kuberenetes CLI plugin I circled around. As matter of fact I really enjoyed finding the solutions of every problem that I met and solving it. I learn a lot of things in this simple project which will help in future projects.
 In my next projects I want to use more of DevOps tools like Ansible or Helm. I would also like to try other CI/CD tools like GitHub Actions.
 
