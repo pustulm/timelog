@@ -184,6 +184,7 @@ Name your cloud, choose the kuberenetes and then click Create.
 Then upload your credentials for this cloud. Use the kubernetes ones.
 
 10. *CREATE JOB*
+
 Now you're ready to create the job. From the dashboard of jenkisn click New Item. Call your Job and use Multibranch Pipeline in this case. Then choose Branch Sources as github. Complete the credentials with your GitHub ones, and then paste a link to your repository on GitHub. Then apply and go to your job tab in jenkins. Scan repository now. If everything is fine you should get a information about this in Scan Repository Log. The pipeline from JenkinsFile from your github repository should be loaded and executed.
 
 11. *TESTS*
